@@ -11,8 +11,6 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   // FIX: styled-component build support
   compiler: {
-      // styled components support
-      styledComponents: true,
       // remove data-testid props (only from builds)
       reactRemoveProperties: (process.env.NODE_ENV === 'production'),
   },
