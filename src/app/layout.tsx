@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rive PreviewSystem",
-  description: "Little PreviewSystem sandbox for rive",
+  title: "Rive PreviewSystemLegacy",
+  description: "Little PreviewSystemLegacy sandbox for rive",
 };
 
 export default function RootLayout({

@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { InputGroup } from "@/pages/motion/PreviewSystem/previewTypes";
+import { InputGroup } from "@/pages/motion/PreviewSystemLegacy/previewTypes";
 
 export default function InputItem({
                                       inputVal,
