@@ -1,4 +1,4 @@
-import PreviewSystem from "@/app/PreviewSystemLegacy/PreviewSystem";
+import PreviewSystem from "@/app/PreviewSystem/PreviewSystem";
 import PreviewSystemLegacy from "@/app/PreviewSystemLegacy/PreviewSystemLegacy";
 import Tester from "@/app/tester/tester";
 

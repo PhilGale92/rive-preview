@@ -1,5 +1,3 @@
-import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
-import {Terminal} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
@@ -12,19 +10,7 @@ export default function Tester() {
     return null;
     return (
         <>
-            <Alert variant="destructive">
-                <Terminal className="h-4 w-4" />
-                <AlertTitle>Heads up!</AlertTitle>
-                <AlertDescription>
-                    You can add components and dependencies to your app using the cli.
-                </AlertDescription>
-            </Alert>
-            <ol>
-                <li>
-                    Get started by editing <code>src/app/page.tsx</code>.
-                </li>
-                <li>Save and see your changes instantly.</li>
-            </ol>
+
             <Button variant="secondary">Secondary</Button>
             <Button variant="destructive">destructive</Button>
             <Input type="number" placeholder="51"  />
