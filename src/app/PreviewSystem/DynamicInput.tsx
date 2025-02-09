@@ -20,7 +20,6 @@ export default function DynamicInput({
             <div>
                 <Label htmlFor={`input-namedync-${existingIndex}`}>Input Name [{existingIndex}]</Label>
                 <Input id={`input-namedync-${existingIndex}`} value={inputName} type="text" onChange={(e) => {
-                    // @ts-ignore
                     setInputItems((prev: InputGroup[]) => {
                         const newState = [...prev];
                         newState[existingIndex].inputName = e.target.value;
@@ -29,7 +28,6 @@ export default function DynamicInput({
                 }}/>
                 <Label htmlFor={`input-valdync-${existingIndex}`}>Input Value [{existingIndex}]</Label>
                 <Input id={`input-valdync-${existingIndex}`} value={inputVal} type="text" onChange={(e) => {
-                    // @ts-ignore
                     setInputItems((prev: InputGroup[]) => {
                         const newState = [...prev];
                         newState[existingIndex].inputVal = e.target.value;

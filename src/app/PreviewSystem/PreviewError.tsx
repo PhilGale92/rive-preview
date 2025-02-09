@@ -14,7 +14,7 @@ export default function PreviewError({ errors } : {
             <AlertDescription>
                 <>
                     {errors.map((error) => {
-                        return <p>{error}</p>
+                        return <p key={error}>{error}</p>
                     })}
                 </>
             </AlertDescription>

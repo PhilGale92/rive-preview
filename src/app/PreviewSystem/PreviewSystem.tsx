@@ -10,7 +10,7 @@ import DynamicInputs from "@/app/PreviewSystem/DynamicInputs";
 export default function PreviewSystem() {
     // declare the state at the top of this app
     const [errors, setErrors] = useState<string[]>([]);
-    const [fileBuffer, setFileBuffer] = useState<FileReader| null>();
+    const [fileBuffer, setFileBuffer] = useState<FileReader| null>(null);
     const [fileDetailFingerprint, setFileDetailFingerprint] = useState<string>("");
     const [inputItems, setInputItems] = useState<InputGroup[]>([
         {

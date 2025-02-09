@@ -1,9 +1,8 @@
-'use client';
-
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
 import {Separator} from "@/components/ui/separator";
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
+import {Dispatch, SetStateAction} from "react";
 
 export default function Configuration({
     componentBackgroundColor,
@@ -17,16 +16,16 @@ export default function Configuration({
     setIsUsingResponsiveScale,
     setStateMachineState,
 } : {
-    componentBackgroundColor: any // TODO
-    componentHeight: any // TODO
-    componentWidth: any // TODO
-    stateMachineState: any // TODO
-    isUsingResponsiveScale: any // TODO
-    setComponentBackgroundColor: any // TODO
-    setComponentHeight: any // TODO
-    setComponentWidth: any // TODO
-    setIsUsingResponsiveScale: any // TODO
-    setStateMachineState: any // TODO
+    componentBackgroundColor: string
+    componentHeight: string | number
+    componentWidth: string | number
+    stateMachineState: string
+    isUsingResponsiveScale: boolean
+    setComponentBackgroundColor: Dispatch<SetStateAction<string>>
+    setComponentHeight: Dispatch<SetStateAction<string | number>>
+    setComponentWidth: Dispatch<SetStateAction<string | number>>
+    setIsUsingResponsiveScale: Dispatch<SetStateAction<boolean>>
+    setStateMachineState: Dispatch<SetStateAction<string>>
 }) {
     return (
         <>
@@ -49,7 +48,7 @@ export default function Configuration({
                         }}/>
                         <Separator orientation="horizontal" />
                         <Label htmlFor="comp-width">Component Width</Label>
-                        <Input id="comp-width" type="string" checked={componentWidth} onChange={(e) => {
+                        <Input id="comp-width" type="string" value={componentWidth} onChange={(e) => {
                             if (['auto', 'initial'].includes(e.target.value)) {
                                 setComponentWidth(e.target.value);
                             }
@@ -58,7 +57,7 @@ export default function Configuration({
                             }
                         }}/>
                         <Label htmlFor="comp-height">Component Height</Label>
-                        <Input id="comp-height" type="string" checked={componentHeight} onChange={(e) => {
+                        <Input id="comp-height" type="string" value={componentHeight} onChange={(e) => {
                             if (['auto', 'initial'].includes(e.target.value)) {
                                 setComponentHeight(e.target.value);
                             }
@@ -68,7 +67,7 @@ export default function Configuration({
                         }}/>
                         <Separator orientation="horizontal" />
                         <Label htmlFor="bg-colour">Background colour</Label>
-                        <Input id="bg-colour" type="color" checked={componentBackgroundColor} onChange={(e) => {
+                        <Input id="bg-colour" type="color" value={componentBackgroundColor} onChange={(e) => {
                             setComponentBackgroundColor(e.target.value);
                         }}/>
                     </div>

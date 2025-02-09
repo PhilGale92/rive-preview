@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import PreviewMotionFileRunner from "./PreviewMotionFileRunner";
 import SetInputsWrapper from "./SetInputsWrapper";
-import { InputGroup } from "./previewTypes";
+import { InputGroup } from "./PreviewTypes";
 
 export default function Preview() {
     const [fileBuffer, setFileBuffer] = useState(null);

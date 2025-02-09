@@ -2,11 +2,11 @@ import {Input} from "@/components/ui/input";
 import {Dispatch, SetStateAction} from "react";
 
 export default function FileInput({
-      setFileBuffer,
-      setFileDetailFingerprint,
-      setErrors,
+    setFileBuffer,
+    setFileDetailFingerprint,
+    setErrors,
 } : {
-    setFileBuffer: Dispatch<SetStateAction<FileReader>>
+    setFileBuffer: Dispatch<SetStateAction<FileReader | null>>
     setFileDetailFingerprint: Dispatch<SetStateAction<string>>
     setErrors: Dispatch<SetStateAction<string[]>>
 }) {
@@ -18,16 +18,18 @@ export default function FileInput({
         const loaded = await new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onload = (event) => {
-                // @ts-ignore
-                resolve(event.target.result);
+                if (event && event.target && event.target.result) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const base = event.target.result as any;
+                    resolve(base);
+                }
             };
             reader.onerror = (err) => {
                 reject(err);
             };
             reader.readAsArrayBuffer(file);
-        });
+        }) as FileReader;
         if (loaded) {
-            // @ts-ignore
             setFileBuffer(loaded);
             setFileDetailFingerprint(`f-${file.name}-d-${file.lastModified}`);
         }
