@@ -1,5 +1,4 @@
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
-import {Separator} from "@/components/ui/separator";
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import {Dispatch, SetStateAction} from "react";
@@ -29,9 +28,11 @@ export default function Configuration({
 }) {
     return (
         <>
-            <Collapsible>
+            <Collapsible className="pt-2">
                 <CollapsibleTrigger>
-                    General configuration
+                    <h3 className="cursor-pointer scroll-m-20 pb-1 text-2xl font-semibold tracking-tight">
+                        General configuration
+                    </h3>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                     <div className="grid w-full max-w-sm items-center gap-1.5">
@@ -39,14 +40,12 @@ export default function Configuration({
                         <Input id="state-mach-name" type="text" value={stateMachineName}  onChange={(e) => {
                             setStateMachineName(e.target.value);
                         }}/>
-                        <Separator orientation="horizontal" />
                         <Label htmlFor="responsive-mode">Use responsive mode?</Label>
                         <Input id="responsive-mode" type="checkbox" checked={isUsingResponsiveScale} onChange={() => {
                             setIsUsingResponsiveScale((prev: boolean) => {
                                 return !prev;
                             })
                         }}/>
-                        <Separator orientation="horizontal" />
                         <Label htmlFor="comp-width">Component Width</Label>
                         <Input id="comp-width" type="string" value={componentWidth} onChange={(e) => {
                             setComponentWidth(e.target.value);
@@ -55,7 +54,6 @@ export default function Configuration({
                         <Input id="comp-height" type="string" value={componentHeight} onChange={(e) => {
                             setComponentHeight(e.target.value);
                         }}/>
-                        <Separator orientation="horizontal" />
                         <Label htmlFor="bg-colour">Background colour</Label>
                         <Input id="bg-colour" type="text" value={componentBackgroundColor} onChange={(e) => {
                             setComponentBackgroundColor(e.target.value);
@@ -63,7 +61,6 @@ export default function Configuration({
                     </div>
                 </CollapsibleContent>
             </Collapsible>
-            <Separator orientation="horizontal" />
         </>
     )
 }

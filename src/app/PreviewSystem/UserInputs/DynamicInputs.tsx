@@ -3,7 +3,6 @@ import DynamicInput from "@/app/PreviewSystem/UserInputs/DynamicInput";
 import {Dispatch, SetStateAction} from "react";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
 import {Button} from "@/components/ui/button";
-import {Separator} from "@/components/ui/separator";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {
@@ -27,9 +26,11 @@ export default function DynamicInputs({
 }) {
     return (
         <>
-            <Collapsible>
+            <Collapsible className="pt-2">
                 <CollapsibleTrigger>
-                    Dynamic variables
+                    <h3 className="cursor-pointer scroll-m-20 pb-1 text-2xl font-semibold tracking-tight">
+                        Dynamic variables
+                    </h3>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                     <Label htmlFor="auto-discover">Auto discover input names?</Label>
@@ -38,7 +39,6 @@ export default function DynamicInputs({
                             return !prev;
                         })
                     }}/>
-                    <Separator orientation="horizontal" />
                     <Table className="w-[400px]">
                         <TableHeader>
                             <TableRow>
@@ -61,6 +61,7 @@ export default function DynamicInputs({
                         </TableBody>
                     </Table>
                     <Button
+                        className="mt-5 cursor-pointer"
                         onClick={(e) => {
                             setInputItems(
                                 (prev: InputGroup[]) => {

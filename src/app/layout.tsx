@@ -18,7 +18,9 @@ export default function RootLayout({
         <body>
           <div>
             <ErrorContext>
-              {children}
+              <main className="w-100% h-100% p-10">
+                {children}
+              </main>
               <Toaster />
             </ErrorContext>
           </div>

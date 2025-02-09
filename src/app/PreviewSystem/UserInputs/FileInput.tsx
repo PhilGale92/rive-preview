@@ -36,12 +36,17 @@ export default function FileInput({
         }
     }
     return (
-        <Input
-            type={"file"}
-            accept=".riv"
-            name={"file-tester"}
-            onChange={(e) => {
-                if (e && e.target && e.target.files && e?.target?.files?.length > 0) {
+        <>
+            <h3 className="scroll-m-20 pt-5 pb-2 text-2xl font-semibold tracking-tight">
+                Select .riv file
+            </h3>
+
+    <Input
+        type={"file"}
+        accept=".riv"
+        name={"file-tester"}
+        onChange={(e) => {
+            if (e && e.target && e.target.files && e?.target?.files?.length > 0) {
                     const files = e.target.files;
                     if (files) {
                        const file = files[0];
@@ -55,5 +60,6 @@ export default function FileInput({
                 }
             }}
         />
+        </>
     )
 }
