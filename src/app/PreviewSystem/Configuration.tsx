@@ -43,7 +43,7 @@ export default function Configuration({
                         <Separator orientation="horizontal" />
                         <Label htmlFor="responsive-mode">Use responsive mode?</Label>
                         <Input id="responsive-mode" type="checkbox" checked={isUsingResponsiveScale} onChange={() => {
-                            setIsUsingResponsiveScale((prev) => {
+                            setIsUsingResponsiveScale((prev: boolean) => {
                                 return !prev;
                             })
                         }}/>

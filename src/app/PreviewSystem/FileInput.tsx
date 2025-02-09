@@ -1,15 +1,18 @@
 import {Input} from "@/components/ui/input";
+import {Dispatch, SetStateAction} from "react";
 
 export default function FileInput({
-  setFileBuffer,
-  setFileDetailFingerprint,
-  setError,
+      setFileBuffer,
+      setFileDetailFingerprint,
+      setErrors,
 } : {
-
+    setFileBuffer: Dispatch<SetStateAction<FileReader>>
+    setFileDetailFingerprint: Dispatch<SetStateAction<string>>
+    setErrors: Dispatch<SetStateAction<string[]>>
 }) {
     async function fileLoader(file: File | null) {
         if (!file) {
-            setError('No file found');
+            setErrors(['No file found']);
             return;
         }
         const loaded = await new Promise((resolve, reject) => {
@@ -34,7 +37,7 @@ export default function FileInput({
             type={"file"}
             name={"file-tester"}
             onChange={(e) => {
-                if (e?.target?.files?.length > 0) {
+                if (e && e.target && e.target.files && e?.target?.files?.length > 0) {
                     const files = e.target.files;
                     if (files) {
                        const file = files[0];

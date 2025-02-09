@@ -1,6 +1,6 @@
 import {InputGroup} from "@/app/PreviewSystem/PreviewTypes";
 import DynamicInput from "@/app/PreviewSystem/DynamicInput";
-import {Dispatch} from "react";
+import {Dispatch, SetStateAction} from "react";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
 import {Button} from "@/components/ui/button";
 
@@ -8,7 +8,7 @@ export default function DynamicInputs({
   inputItems,
   setInputItems,
 } : {
-    setInputItems: Dispatch<InputGroup[]>;
+    setInputItems: Dispatch<SetStateAction<InputGroup[]>>;
     inputItems: InputGroup[];
 }) {
     return (
@@ -32,7 +32,6 @@ export default function DynamicInputs({
                     <Button
                         onClick={(e) => {
                             setInputItems(
-                                // @ts-ignore
                                 (prev: InputGroup[]) => {
                                     return [
                                         ...prev,
@@ -40,7 +39,7 @@ export default function DynamicInputs({
                                             inputName: "",
                                             inputVal: "",
                                         },
-                                    ];
+                                    ]
                                 },
                             );
                             e.stopPropagation();

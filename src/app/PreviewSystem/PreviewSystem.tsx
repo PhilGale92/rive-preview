@@ -9,9 +9,9 @@ import DynamicInputs from "@/app/PreviewSystem/DynamicInputs";
 
 export default function PreviewSystem() {
     // declare the state at the top of this app
-    const [errors, setErrors] = useState([]);
-    const [fileBuffer, setFileBuffer] = useState(null);
-    const [fileDetailFingerprint, setFileDetailFingerprint] = useState("");
+    const [errors, setErrors] = useState<string[]>([]);
+    const [fileBuffer, setFileBuffer] = useState<FileReader| null>();
+    const [fileDetailFingerprint, setFileDetailFingerprint] = useState<string>("");
     const [inputItems, setInputItems] = useState<InputGroup[]>([
         {
             inputName: "Number 1",
@@ -19,12 +19,12 @@ export default function PreviewSystem() {
         },
     ]);
     // TODO -  this is reponsive mode... need good explainer! 'fitCanvasToArtboardHeight' behaviour' ( or is that "responsive mode
-    const [stateMachineState, setStateMachineState] = useState("State Machine 1");
+    const [stateMachineState, setStateMachineState] = useState<string>("State Machine 1");
     const [componentBackgroundColor, setComponentBackgroundColor] =
-        useState("transparent");
-    const [componentHeight, setComponentHeight] = useState("100%");
-    const [componentWidth, setComponentWidth] = useState("100%");
-    const [isUsingResponsiveScale, setIsUsingResponsiveScale] = useState(true);
+        useState<string>("transparent");
+    const [componentHeight, setComponentHeight] = useState<string | number>("100%");
+    const [componentWidth, setComponentWidth] = useState<string | number>("100%");
+    const [isUsingResponsiveScale, setIsUsingResponsiveScale] = useState<boolean>(true);
 
     return (
         <>

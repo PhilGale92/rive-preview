@@ -1,5 +1,5 @@
-import { Dispatch } from "react";
-import { InputGroup } from "./previewTypes";
+import {Dispatch, SetStateAction} from "react";
+import { InputGroup } from "./PreviewTypes";
 import {Separator} from "@/components/ui/separator";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
@@ -13,7 +13,7 @@ export default function DynamicInput({
     existingIndex: number;
     inputVal: string | number;
     inputName: string;
-    setInputItems: Dispatch<InputGroup[]>;
+    setInputItems: Dispatch<SetStateAction<InputGroup[]>>;
 }) {
     return (
         <>
