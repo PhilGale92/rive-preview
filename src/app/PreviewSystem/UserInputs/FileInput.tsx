@@ -45,7 +45,12 @@ export default function FileInput({
                     const files = e.target.files;
                     if (files) {
                        const file = files[0];
-                       fileLoader(file);
+                       if (file.name.endsWith('.riv')) {
+                           fileLoader(file);
+                       }
+                       else {
+                           contextualErrors.addError('File extension must end with .riv');
+                       }
                     }
                 }
             }}

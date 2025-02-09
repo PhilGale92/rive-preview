@@ -3,6 +3,7 @@ import {Collapsible, CollapsibleTrigger, CollapsibleContent} from "@/components/
 export default function Introduction() {
     return (
         <>
+            <h1>Rive Previewer</h1>
             <Collapsible defaultOpen>
                 <CollapsibleTrigger>
                     <h2>What is it?</h2>

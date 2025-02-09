@@ -16,3 +16,7 @@ Just use `npm run dev` or `npm run build`
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result if in dev mode..
 
 Living on vercel. Just using SSG so no files are uploaded to a server! All parsing in browser.
+
+## Or to run online:
+
+Open [https://rive.philgale.co.uk](https://rive.philgale.co.uk) with your browser.
