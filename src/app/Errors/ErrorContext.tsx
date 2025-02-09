@@ -4,6 +4,7 @@ import {ReactNode, createContext, useState, useCallback} from "react";
 
 export const ErrorContext = createContext({
     errors: [] as string[],
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     addError: (e: string) => {},
     clearErrors: () => {},
 });

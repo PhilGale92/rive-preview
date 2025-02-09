@@ -2,7 +2,7 @@
 
 import {Layout, useRive} from "@rive-app/react-canvas";
 import {StateMachineInput} from "@rive-app/canvas";
-import { useContext, useEffect, useState} from "react";
+import { useContext, useEffect, } from "react";
 import { ErrorContext } from '@/app/Errors/ErrorContext';
 import { useToast} from "@/hooks/use-toast"
 

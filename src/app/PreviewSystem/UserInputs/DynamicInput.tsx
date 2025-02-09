@@ -1,8 +1,7 @@
 import {Dispatch, SetStateAction} from "react";
 import { InputGroup } from "../PreviewTypes";
-import {Separator} from "@/components/ui/separator";
-import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
+import {TableRow, TableCell } from "@/components/ui/table";
 
 export default function DynamicInput({
       inputVal,
@@ -16,9 +15,8 @@ export default function DynamicInput({
     setInputItems: Dispatch<SetStateAction<InputGroup[]>>;
 }) {
     return (
-        <>
-            <div>
-                <Label htmlFor={`input-namedync-${existingIndex}`}>Input Name [{existingIndex}]</Label>
+        <TableRow>
+            <TableCell className="w-[100px]">
                 <Input id={`input-namedync-${existingIndex}`} value={inputName} type="text" onChange={(e) => {
                     setInputItems((prev: InputGroup[]) => {
                         const newState = [...prev];
@@ -26,7 +24,8 @@ export default function DynamicInput({
                         return newState;
                     });
                 }}/>
-                <Label htmlFor={`input-valdync-${existingIndex}`}>Input Value [{existingIndex}]</Label>
+            </TableCell>
+            <TableCell className="w-[100px]">
                 <Input id={`input-valdync-${existingIndex}`} value={inputVal} type="text" onChange={(e) => {
                     setInputItems((prev: InputGroup[]) => {
                         const newState = [...prev];
@@ -34,9 +33,7 @@ export default function DynamicInput({
                         return newState;
                     });
                 }}/>
-
-            </div>
-            <Separator orientation="horizontal" />
-        </>
+            </TableCell>
+        </TableRow>
     );
 }

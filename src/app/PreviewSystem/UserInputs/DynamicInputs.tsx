@@ -6,6 +6,13 @@ import {Button} from "@/components/ui/button";
 import {Separator} from "@/components/ui/separator";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
+import {
+    Table,
+    TableBody,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
 
 export default function DynamicInputs({
   inputItems,
@@ -18,7 +25,6 @@ export default function DynamicInputs({
     loadInputsFromRive: boolean;
     setLoadInputsFromRive: Dispatch<SetStateAction<boolean>>;
 }) {
-    // TODO - use table view to compact them
     return (
         <>
             <Collapsible>
@@ -26,7 +32,6 @@ export default function DynamicInputs({
                     Dynamic variables
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-
                     <Label htmlFor="auto-discover">Auto discover input names?</Label>
                     <Input id="auto-discover" type="checkbox" checked={loadInputsFromRive} onChange={() => {
                         setLoadInputsFromRive((prev: boolean) => {
@@ -34,18 +39,27 @@ export default function DynamicInputs({
                         })
                     }}/>
                     <Separator orientation="horizontal" />
-
-                    {inputItems.map((stateItem: InputGroup, existingIndex: number) => {
-                        return (
-                            <DynamicInput
-                                key={existingIndex}
-                                setInputItems={setInputItems}
-                                existingIndex={existingIndex}
-                                inputVal={stateItem.inputVal}
-                                inputName={stateItem.inputName}
-                            />
-                        );
-                    })}
+                    <Table className="w-[200px]">
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="w-[100px]">Input Name</TableHead>
+                                <TableHead className="w-[100px]">Value</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {inputItems.map((stateItem: InputGroup, existingIndex: number) => {
+                                return (
+                                    <DynamicInput
+                                        key={existingIndex}
+                                        setInputItems={setInputItems}
+                                        existingIndex={existingIndex}
+                                        inputVal={stateItem.inputVal}
+                                        inputName={stateItem.inputName}
+                                    />
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
                     <Button
                         onClick={(e) => {
                             setInputItems(
@@ -65,6 +79,8 @@ export default function DynamicInputs({
                     >
                         MAKE NEW INPUT GROUP
                     </Button>
+
+
                 </CollapsibleContent>
             </Collapsible>
         </>
