@@ -9,9 +9,7 @@ const nextConfig: NextConfig = {
       return new Date().getTime().toString();
   },
   images: { unoptimized: true },
-  // FIX: styled-component build support
   compiler: {
-      // remove data-testid props (only from builds)
       reactRemoveProperties: (process.env.NODE_ENV === 'production'),
   },
 };
