@@ -25,9 +25,11 @@ export default function PreviewSystem() {
 
     const [discoveredInputNames, setDiscoveredInputNames] = useState<string[]>([]);
     const inputItemsHasChanged = useHasChanged(inputItems)
+    const fingerprintChanged = useHasChanged(fileDetailFingerprint)
+
     const updateInputCallback = useCallback(
         (inputs: RiveInput[]) => {
-            if (discoveredInputNames.length === 0) {
+            if (fingerprintChanged) {
                 setDiscoveredInputNames(inputs.map((i) => i.name));
             }
             if (inputItemsHasChanged) {
@@ -39,7 +41,7 @@ export default function PreviewSystem() {
                 });
             }
         },
-        [inputItems, discoveredInputNames.length, inputItemsHasChanged],
+        [inputItems, inputItemsHasChanged, fingerprintChanged],
     );
 
     useEffect(() => {
@@ -80,7 +82,9 @@ export default function PreviewSystem() {
             />
             {fileDetailFingerprint && fileBuffer && (
                 <PostFileSelectedWidget
+                    key={fileDetailFingerprint}
                     fileBuffer={fileBuffer}
+                    setErrors={setErrors}
                     componentBackgroundColor={componentBackgroundColor}
                     stateMachineName={stateMachineName}
                     componentHeight={componentHeight}

@@ -2,7 +2,7 @@
 
 import {Layout, useRive} from "@rive-app/react-canvas";
 import {StateMachineInput} from "@rive-app/canvas";
-import {useEffect} from "react";
+import {Dispatch, SetStateAction, useEffect} from "react";
 
 export default function PostFileSelectedWidget({
     fileBuffer,
@@ -12,6 +12,7 @@ export default function PostFileSelectedWidget({
     componentWidth,
     isUsingResponsiveScale,
     updateInputCallback,
+    setErrors,
 } : {
     fileBuffer: ArrayBuffer
     componentBackgroundColor: string,
@@ -20,15 +21,18 @@ export default function PostFileSelectedWidget({
     componentWidth: string | number,
     isUsingResponsiveScale: boolean
     updateInputCallback: (inputNames: StateMachineInput[]) => void;
+    setErrors: Dispatch<SetStateAction<string[]>>;
 }) {
     const { rive, RiveComponent } = useRive(
         {
             buffer: fileBuffer,
             onLoadError: (error) => {
-                alert(JSON.stringify(error));
+                // TODO - make errors stack
+                setErrors([JSON.stringify(error)]);
             },
             stateMachines: stateMachineName,
             onStateChange: (state) => {
+                // TODO - display last anims completed
                 if (state && Array.isArray(state.data) && state.data.length > 0) {
                     console.log("Animations completedXXX:", state);
                 }

@@ -5,7 +5,7 @@ import { usePrevious } from './usePrevious';
 export function useHasChanged<T>(
     value: T,
     callback?: (previous: T) => void,
-): [hasChanged: boolean, previous: T | undefined] {
+): boolean {
     const previous = usePrevious(value);
     const hasChanged = typeof previous !== 'undefined' && previous !== value;
 
@@ -15,5 +15,5 @@ export function useHasChanged<T>(
         }
     }, [callback, hasChanged, previous]);
 
-    return [hasChanged, previous];
+    return hasChanged;
 }

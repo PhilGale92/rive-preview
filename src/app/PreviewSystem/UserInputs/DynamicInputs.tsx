@@ -18,6 +18,7 @@ export default function DynamicInputs({
     loadInputsFromRive: boolean;
     setLoadInputsFromRive: Dispatch<SetStateAction<boolean>>;
 }) {
+    // TODO - use table view to compact them
     return (
         <>
             <Collapsible>
