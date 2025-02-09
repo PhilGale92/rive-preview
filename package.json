@@ -24,7 +24,9 @@
     "next": "15.1.6",
     "postcss": "^8.5.1",
     "react": "^19.0.0",
+    "react-confetti": "^6.2.2",
     "react-dom": "^19.0.0",
+    "react-use": "^17.6.0",
     "tailwind-merge": "^3.0.1",
     "tailwindcss": "^4.0.4",
     "tailwindcss-animate": "^1.0.7"

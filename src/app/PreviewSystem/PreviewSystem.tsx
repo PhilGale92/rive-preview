@@ -1,15 +1,22 @@
 'use client';
 
+import Confetti from 'react-confetti'
+import { useWindowSize } from 'react-use'
+import {useCallback, useContext, useEffect, useState} from "react";
+
 import PreviewError from './PreviewError';
 import FileInput from './UserInputs/FileInput';
-import {useCallback, useEffect, useState} from "react";
 import {InputGroup, RiveInput} from "./PreviewTypes";
 import Configuration from "@/app/PreviewSystem/UserInputs/Configuration";
 import DynamicInputs from "@/app/PreviewSystem/UserInputs/DynamicInputs";
 import PostFileSelectedWidget from "@/app/PreviewSystem/PostFileSelectedWidget/PostFileSelectedWidget";
 import {useHasChanged} from "@/app/PreviewSystem/hooks/useHasChanged";
+import {ErrorContext} from "@/app/Errors/ErrorContext";
 
 export default function PreviewSystem() {
+    const contextualErrors = useContext(ErrorContext);
+    const { width, height } = useWindowSize();
+    const [showConfetti, setShowConfetti] = useState(false);
     const [fileBuffer, setFileBuffer] = useState<ArrayBuffer| null>(null);
     const [fileDetailFingerprint, setFileDetailFingerprint] = useState<string>("");
     const [inputItems, setInputItems] = useState<InputGroup[]>([]);
@@ -29,6 +36,8 @@ export default function PreviewSystem() {
         (inputs: RiveInput[]) => {
             if (fingerprintChanged) {
                 setDiscoveredInputNames(inputs.map((i) => i.name));
+                contextualErrors.clearErrors();
+                setShowConfetti(true);
             }
             if (inputItemsHasChanged) {
                 inputItems.forEach((item) => {
@@ -39,7 +48,7 @@ export default function PreviewSystem() {
                 });
             }
         },
-        [inputItems, inputItemsHasChanged, fingerprintChanged],
+        [inputItems, inputItemsHasChanged, fingerprintChanged, contextualErrors],
     );
 
     useEffect(() => {
@@ -55,6 +64,18 @@ export default function PreviewSystem() {
 
     return (
         <>
+            {showConfetti && (
+                <Confetti
+                    key={`confetti-${fileDetailFingerprint}`}
+                    recycle={false}
+                    onConfettiComplete={() => {
+                        setShowConfetti(false);
+                    }}
+                    width={width}
+                    numberOfPieces={1000}
+                    height={height}
+                />
+            )}
             <FileInput
                 setFileBuffer={setFileBuffer}
                 setFileDetailFingerprint={setFileDetailFingerprint}
