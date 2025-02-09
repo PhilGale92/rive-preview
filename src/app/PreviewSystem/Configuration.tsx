@@ -7,25 +7,25 @@ import {Dispatch, SetStateAction} from "react";
 export default function Configuration({
     componentBackgroundColor,
     componentHeight,
-    stateMachineState,
+                                          stateMachineName,
     componentWidth,
     isUsingResponsiveScale,
     setComponentBackgroundColor,
     setComponentHeight,
     setComponentWidth,
     setIsUsingResponsiveScale,
-    setStateMachineState,
+                                          setStateMachineName,
 } : {
     componentBackgroundColor: string
     componentHeight: string | number
     componentWidth: string | number
-    stateMachineState: string
+    stateMachineName: string
     isUsingResponsiveScale: boolean
     setComponentBackgroundColor: Dispatch<SetStateAction<string>>
     setComponentHeight: Dispatch<SetStateAction<string | number>>
     setComponentWidth: Dispatch<SetStateAction<string | number>>
     setIsUsingResponsiveScale: Dispatch<SetStateAction<boolean>>
-    setStateMachineState: Dispatch<SetStateAction<string>>
+    setStateMachineName: Dispatch<SetStateAction<string>>
 }) {
     return (
         <>
@@ -35,9 +35,9 @@ export default function Configuration({
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                     <div className="grid w-full max-w-sm items-center gap-1.5">
-                        <Label htmlFor="responsive-mode">Use responsive mode?</Label>
-                        <Input id="responsive-mode" type="text" value={stateMachineState}  onChange={(e) => {
-                            setStateMachineState(e.target.value);
+                        <Label htmlFor="state-mach-name">Rive state machine name</Label>
+                        <Input id="state-mach-name" type="text" value={stateMachineName}  onChange={(e) => {
+                            setStateMachineName(e.target.value);
                         }}/>
                         <Separator orientation="horizontal" />
                         <Label htmlFor="responsive-mode">Use responsive mode?</Label>

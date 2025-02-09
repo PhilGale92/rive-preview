@@ -6,7 +6,7 @@ export default function FileInput({
     setFileDetailFingerprint,
     setErrors,
 } : {
-    setFileBuffer: Dispatch<SetStateAction<FileReader | null>>
+    setFileBuffer: Dispatch<SetStateAction<ArrayBuffer | null>>
     setFileDetailFingerprint: Dispatch<SetStateAction<string>>
     setErrors: Dispatch<SetStateAction<string[]>>
 }) {
@@ -19,8 +19,7 @@ export default function FileInput({
             const reader = new FileReader();
             reader.onload = (event) => {
                 if (event && event.target && event.target.result) {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const base = event.target.result as any;
+                    const base = event.target.result as ArrayBuffer;
                     resolve(base);
                 }
             };
@@ -28,7 +27,7 @@ export default function FileInput({
                 reject(err);
             };
             reader.readAsArrayBuffer(file);
-        }) as FileReader;
+        }) as ArrayBuffer;
         if (loaded) {
             setFileBuffer(loaded);
             setFileDetailFingerprint(`f-${file.name}-d-${file.lastModified}`);

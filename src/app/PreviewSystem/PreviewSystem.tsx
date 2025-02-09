@@ -2,15 +2,16 @@
 
 import PreviewError from './PreviewError';
 import FileInput from './FileInput';
-import { useState } from "react";
-import {InputGroup} from "@/app/PreviewSystemLegacy/PreviewTypes";
+import {useCallback, useState} from "react";
+import {InputGroup, RiveInput} from "./PreviewTypes";
 import Configuration from "@/app/PreviewSystem/Configuration";
 import DynamicInputs from "@/app/PreviewSystem/DynamicInputs";
+import PostFileSelectedWidget from "@/app/PreviewSystem/PostFileSelectedWidget/PostFileSelectedWidget";
 
 export default function PreviewSystem() {
     // declare the state at the top of this app
     const [errors, setErrors] = useState<string[]>([]);
-    const [fileBuffer, setFileBuffer] = useState<FileReader| null>(null);
+    const [fileBuffer, setFileBuffer] = useState<ArrayBuffer| null>(null);
     const [fileDetailFingerprint, setFileDetailFingerprint] = useState<string>("");
     const [inputItems, setInputItems] = useState<InputGroup[]>([
         {
@@ -18,13 +19,24 @@ export default function PreviewSystem() {
             inputVal: 0,
         },
     ]);
-    // TODO -  this is reponsive mode... need good explainer! 'fitCanvasToArtboardHeight' behaviour' ( or is that "responsive mode
-    const [stateMachineState, setStateMachineState] = useState<string>("State Machine 1");
+    const [stateMachineName, setStateMachineName] = useState<string>("State Machine 1");
     const [componentBackgroundColor, setComponentBackgroundColor] =
         useState<string>("transparent");
     const [componentHeight, setComponentHeight] = useState<string | number>("100%");
     const [componentWidth, setComponentWidth] = useState<string | number>("100%");
     const [isUsingResponsiveScale, setIsUsingResponsiveScale] = useState<boolean>(true);
+
+    const updateInputCallback = useCallback(
+        (inputs: RiveInput[]) => {
+            inputItems.forEach((item) => {
+                const relevantInput = inputs.find((i) => i.name === item.inputName);
+                if (relevantInput) {
+                    relevantInput.value = item.inputVal;
+                }
+            });
+        },
+        [inputItems],
+    );
 
     return (
         <>
@@ -35,11 +47,11 @@ export default function PreviewSystem() {
             />
             <Configuration
                 componentBackgroundColor={componentBackgroundColor}
-                stateMachineState={stateMachineState}
+                stateMachineName={stateMachineName}
                 componentHeight={componentHeight}
                 componentWidth={componentWidth}
                 isUsingResponsiveScale={isUsingResponsiveScale}
-                setStateMachineState={setStateMachineState}
+                setStateMachineName={setStateMachineName}
                 setComponentBackgroundColor={setComponentBackgroundColor}
                 setComponentHeight={setComponentHeight}
                 setComponentWidth={setComponentWidth}
@@ -49,6 +61,17 @@ export default function PreviewSystem() {
                 setInputItems={setInputItems}
                 inputItems={inputItems}
             />
+            {fileDetailFingerprint && fileBuffer && (
+                <PostFileSelectedWidget
+                    fileBuffer={fileBuffer}
+                    componentBackgroundColor={componentBackgroundColor}
+                    stateMachineName={stateMachineName}
+                    componentHeight={componentHeight}
+                    componentWidth={componentWidth}
+                    isUsingResponsiveScale={isUsingResponsiveScale}
+                    updateInputCallback={updateInputCallback}
+                />
+            )}
             <PreviewError errors={errors} />
         </>
     )

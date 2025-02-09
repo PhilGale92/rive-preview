@@ -1,27 +1,32 @@
-import { Layout, useRive } from "@rive-app/react-canvas";
-import { useEffect } from "react";
-import { StateMachineInput } from "@rive-app/canvas";
+'use client';
 
-export default function PreviewMotionFileRunner({
-                                                    updateInputCallback = (f: any) => {},
-                                                    buffer,
-                                                    componentBackgroundColor,
-                                                    componentHeight,
-                                                    componentWidth,
-                                                    stateMachineName,
-                                                    useResponsiveScale,
-                                                }: {
-    updateInputCallback?: (inputNames: StateMachineInput[]) => void;
-    buffer: ArrayBuffer;
-    componentBackgroundColor: string;
-    componentHeight: string;
-    componentWidth: string;
-    stateMachineName: string;
-    useResponsiveScale: boolean;
+import {Layout, useRive} from "@rive-app/react-canvas";
+import {StateMachineInput} from "@rive-app/canvas";
+import {useEffect} from "react";
+
+export default function PostFileSelectedWidget({
+    fileBuffer,
+    componentBackgroundColor,
+    stateMachineName,
+    componentHeight,
+    componentWidth,
+    isUsingResponsiveScale,
+    updateInputCallback,
+} : {
+    fileBuffer: ArrayBuffer
+    componentBackgroundColor: string,
+    stateMachineName: string,
+    componentHeight: string | number,
+    componentWidth: string | number,
+    isUsingResponsiveScale: boolean
+    updateInputCallback: (inputNames: StateMachineInput[]) => void;
 }) {
     const { rive, RiveComponent } = useRive(
         {
-            buffer,
+            buffer: fileBuffer,
+            onLoad: (state) => {
+               console.log(state.data);
+            },
             onLoadError: (error) => {
                 alert(JSON.stringify(error));
             },
@@ -36,7 +41,7 @@ export default function PreviewMotionFileRunner({
             autoplay: true,
         },
         {
-            fitCanvasToArtboardHeight: useResponsiveScale,
+            fitCanvasToArtboardHeight: isUsingResponsiveScale,
         },
     );
     useEffect(() => {
@@ -47,6 +52,8 @@ export default function PreviewMotionFileRunner({
             }
         }
     }, [updateInputCallback, rive, stateMachineName]);
+
+
     return (
         <>
             <p>Click in the corner of the red box; and you can resize it</p>
