@@ -4,6 +4,6 @@ export type InputGroup = {
 };
 
 export type RiveInput = {
-    name: string | number;
+    name: string;
     value: string | number | boolean;
 };

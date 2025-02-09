@@ -1,15 +1,22 @@
 import {InputGroup} from "@/app/PreviewSystem/PreviewTypes";
-import DynamicInput from "@/app/PreviewSystem/DynamicInput";
+import DynamicInput from "@/app/PreviewSystem/UserInputs/DynamicInput";
 import {Dispatch, SetStateAction} from "react";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
 import {Button} from "@/components/ui/button";
+import {Separator} from "@/components/ui/separator";
+import {Label} from "@/components/ui/label";
+import {Input} from "@/components/ui/input";
 
 export default function DynamicInputs({
   inputItems,
   setInputItems,
+  loadInputsFromRive,
+  setLoadInputsFromRive,
 } : {
     setInputItems: Dispatch<SetStateAction<InputGroup[]>>;
     inputItems: InputGroup[];
+    loadInputsFromRive: boolean;
+    setLoadInputsFromRive: Dispatch<SetStateAction<boolean>>;
 }) {
     return (
         <>
@@ -18,6 +25,15 @@ export default function DynamicInputs({
                     Dynamic variables
                 </CollapsibleTrigger>
                 <CollapsibleContent>
+
+                    <Label htmlFor="auto-discover">Auto discover input names?</Label>
+                    <Input id="auto-discover" type="checkbox" checked={loadInputsFromRive} onChange={() => {
+                        setLoadInputsFromRive((prev: boolean) => {
+                            return !prev;
+                        })
+                    }}/>
+                    <Separator orientation="horizontal" />
+
                     {inputItems.map((stateItem: InputGroup, existingIndex: number) => {
                         return (
                             <DynamicInput

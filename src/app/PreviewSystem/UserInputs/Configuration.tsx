@@ -7,14 +7,14 @@ import {Dispatch, SetStateAction} from "react";
 export default function Configuration({
     componentBackgroundColor,
     componentHeight,
-                                          stateMachineName,
+    stateMachineName,
     componentWidth,
     isUsingResponsiveScale,
     setComponentBackgroundColor,
     setComponentHeight,
     setComponentWidth,
     setIsUsingResponsiveScale,
-                                          setStateMachineName,
+    setStateMachineName,
 } : {
     componentBackgroundColor: string
     componentHeight: string | number

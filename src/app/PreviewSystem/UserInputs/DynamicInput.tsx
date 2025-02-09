@@ -1,5 +1,5 @@
 import {Dispatch, SetStateAction} from "react";
-import { InputGroup } from "./PreviewTypes";
+import { InputGroup } from "../PreviewTypes";
 import {Separator} from "@/components/ui/separator";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";

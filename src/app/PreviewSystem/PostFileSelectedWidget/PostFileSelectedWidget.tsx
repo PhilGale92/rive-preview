@@ -24,9 +24,6 @@ export default function PostFileSelectedWidget({
     const { rive, RiveComponent } = useRive(
         {
             buffer: fileBuffer,
-            onLoad: (state) => {
-               console.log(state.data);
-            },
             onLoadError: (error) => {
                 alert(JSON.stringify(error));
             },
