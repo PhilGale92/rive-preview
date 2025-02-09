@@ -16,7 +16,7 @@ export default function DynamicInput({
 }) {
     return (
         <TableRow>
-            <TableCell className="w-[100px]">
+            <TableCell className="w-[300px]">
                 <Input id={`input-namedync-${existingIndex}`} value={inputName} type="text" onChange={(e) => {
                     setInputItems((prev: InputGroup[]) => {
                         const newState = [...prev];

@@ -39,10 +39,10 @@ export default function DynamicInputs({
                         })
                     }}/>
                     <Separator orientation="horizontal" />
-                    <Table className="w-[200px]">
+                    <Table className="w-[400px]">
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="w-[100px]">Input Name</TableHead>
+                                <TableHead className="w-[300px]">Input Name</TableHead>
                                 <TableHead className="w-[100px]">Value</TableHead>
                             </TableRow>
                         </TableHeader>

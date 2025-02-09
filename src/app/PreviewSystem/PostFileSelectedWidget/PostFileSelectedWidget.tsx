@@ -5,6 +5,7 @@ import {StateMachineInput} from "@rive-app/canvas";
 import { useContext, useEffect, } from "react";
 import { ErrorContext } from '@/app/Errors/ErrorContext';
 import { useToast} from "@/hooks/use-toast"
+import PreviewDisplayer from "@/app/PreviewSystem/PostFileSelectedWidget/PreviewDisplayer";
 
 export default function PostFileSelectedWidget({
     fileBuffer,
@@ -58,38 +59,17 @@ export default function PostFileSelectedWidget({
         }
     }, [updateInputCallback, rive, stateMachineName]);
 
-
     return (
         <>
-            <p>Click in the corner of the red box; and you can resize it</p>
-
-            <div
-                style={{
-                    width: "95%",
-                    height: "20rem",
-                    backgroundColor: "cyan",
-                    position: "relative",
-                }}
-            >
-                <div
+            <PreviewDisplayer>
+                <RiveComponent
                     style={{
-                        width: "90%",
-                        height: "90%",
-                        resize: "both",
-                        overflow: "auto",
-                        border: "5px solid red",
-                        backgroundColor: "white",
+                        width: componentWidth,
+                        height: componentHeight,
+                        backgroundColor: componentBackgroundColor,
                     }}
-                >
-                    <RiveComponent
-                        style={{
-                            width: componentWidth,
-                            height: componentHeight,
-                            backgroundColor: componentBackgroundColor,
-                        }}
-                    />
-                </div>
-            </div>
+                />
+            </PreviewDisplayer>
         </>
     );
 }
