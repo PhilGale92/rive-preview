@@ -49,25 +49,15 @@ export default function Configuration({
                         <Separator orientation="horizontal" />
                         <Label htmlFor="comp-width">Component Width</Label>
                         <Input id="comp-width" type="string" value={componentWidth} onChange={(e) => {
-                            if (['auto', 'initial'].includes(e.target.value)) {
-                                setComponentWidth(e.target.value);
-                            }
-                            else {
-                                setComponentWidth(parseInt(e.target.value, 10));
-                            }
+                            setComponentWidth(e.target.value);
                         }}/>
                         <Label htmlFor="comp-height">Component Height</Label>
                         <Input id="comp-height" type="string" value={componentHeight} onChange={(e) => {
-                            if (['auto', 'initial'].includes(e.target.value)) {
-                                setComponentHeight(e.target.value);
-                            }
-                            else {
-                                setComponentHeight(parseInt(e.target.value, 10));
-                            }
+                            setComponentHeight(e.target.value);
                         }}/>
                         <Separator orientation="horizontal" />
                         <Label htmlFor="bg-colour">Background colour</Label>
-                        <Input id="bg-colour" type="color" value={componentBackgroundColor} onChange={(e) => {
+                        <Input id="bg-colour" type="text" value={componentBackgroundColor} onChange={(e) => {
                             setComponentBackgroundColor(e.target.value);
                         }}/>
                     </div>

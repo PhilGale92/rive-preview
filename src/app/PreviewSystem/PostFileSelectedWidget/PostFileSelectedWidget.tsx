@@ -2,7 +2,9 @@
 
 import {Layout, useRive} from "@rive-app/react-canvas";
 import {StateMachineInput} from "@rive-app/canvas";
-import {Dispatch, SetStateAction, useEffect} from "react";
+import { useContext, useEffect, useState} from "react";
+import { ErrorContext } from '@/app/Errors/ErrorContext';
+import { useToast} from "@/hooks/use-toast"
 
 export default function PostFileSelectedWidget({
     fileBuffer,
@@ -12,7 +14,6 @@ export default function PostFileSelectedWidget({
     componentWidth,
     isUsingResponsiveScale,
     updateInputCallback,
-    setErrors,
 } : {
     fileBuffer: ArrayBuffer
     componentBackgroundColor: string,
@@ -21,20 +22,23 @@ export default function PostFileSelectedWidget({
     componentWidth: string | number,
     isUsingResponsiveScale: boolean
     updateInputCallback: (inputNames: StateMachineInput[]) => void;
-    setErrors: Dispatch<SetStateAction<string[]>>;
 }) {
+    const { toast } = useToast()
+    const contextualErrors = useContext(ErrorContext);
+
     const { rive, RiveComponent } = useRive(
         {
             buffer: fileBuffer,
             onLoadError: (error) => {
-                // TODO - make errors stack
-                setErrors([JSON.stringify(error)]);
+                contextualErrors.addError(JSON.stringify(error));
             },
             stateMachines: stateMachineName,
             onStateChange: (state) => {
-                // TODO - display last anims completed
                 if (state && Array.isArray(state.data) && state.data.length > 0) {
-                    console.log("Animations completedXXX:", state);
+                    toast({
+                        title: "Last played animation(s)",
+                        description: state.data,
+                    })
                 }
             },
             // This is optional.Provides additional layout control.

@@ -1,10 +1,14 @@
+'use client';
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
 import {Terminal} from "lucide-react";
 
-export default function PreviewError({ errors } : {
-    errors: string[]
-}) {
-    if (errors.length === 0) {
+import { ErrorContext } from '@/app/Errors/ErrorContext';
+import { useContext } from "react";
+
+
+export default function PreviewError() {
+    const contextualErrors = useContext(ErrorContext);
+    if (contextualErrors.errors.length === 0) {
         return null;
     }
     return (
@@ -13,7 +17,7 @@ export default function PreviewError({ errors } : {
             <AlertTitle>Parse errors:</AlertTitle>
             <AlertDescription>
                 <>
-                    {errors.map((error) => {
+                    {contextualErrors.errors.map((error) => {
                         return <p key={error}>{error}</p>
                     })}
                 </>

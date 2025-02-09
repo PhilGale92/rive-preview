@@ -10,8 +10,6 @@ import PostFileSelectedWidget from "@/app/PreviewSystem/PostFileSelectedWidget/P
 import {useHasChanged} from "@/app/PreviewSystem/hooks/useHasChanged";
 
 export default function PreviewSystem() {
-    // declare the state at the top of this app
-    const [errors, setErrors] = useState<string[]>([]);
     const [fileBuffer, setFileBuffer] = useState<ArrayBuffer| null>(null);
     const [fileDetailFingerprint, setFileDetailFingerprint] = useState<string>("");
     const [inputItems, setInputItems] = useState<InputGroup[]>([]);
@@ -60,7 +58,6 @@ export default function PreviewSystem() {
             <FileInput
                 setFileBuffer={setFileBuffer}
                 setFileDetailFingerprint={setFileDetailFingerprint}
-                setErrors={setErrors}
             />
             <Configuration
                 componentBackgroundColor={componentBackgroundColor}
@@ -84,7 +81,6 @@ export default function PreviewSystem() {
                 <PostFileSelectedWidget
                     key={fileDetailFingerprint}
                     fileBuffer={fileBuffer}
-                    setErrors={setErrors}
                     componentBackgroundColor={componentBackgroundColor}
                     stateMachineName={stateMachineName}
                     componentHeight={componentHeight}
@@ -93,7 +89,7 @@ export default function PreviewSystem() {
                     updateInputCallback={updateInputCallback}
                 />
             )}
-            <PreviewError errors={errors} />
+            <PreviewError />
         </>
     )
 }

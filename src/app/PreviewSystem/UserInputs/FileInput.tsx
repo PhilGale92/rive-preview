@@ -1,18 +1,20 @@
+'use client';
+
 import {Input} from "@/components/ui/input";
-import {Dispatch, SetStateAction} from "react";
+import {Dispatch, SetStateAction, useContext} from "react";
+import { ErrorContext } from '@/app/Errors/ErrorContext';
 
 export default function FileInput({
     setFileBuffer,
     setFileDetailFingerprint,
-    setErrors,
 } : {
     setFileBuffer: Dispatch<SetStateAction<ArrayBuffer | null>>
     setFileDetailFingerprint: Dispatch<SetStateAction<string>>
-    setErrors: Dispatch<SetStateAction<string[]>>
 }) {
+    const contextualErrors = useContext(ErrorContext);
     async function fileLoader(file: File | null) {
         if (!file) {
-            setErrors(['No file found']);
+            contextualErrors.addError('No file found');
             return;
         }
         const loaded = await new Promise((resolve, reject) => {
