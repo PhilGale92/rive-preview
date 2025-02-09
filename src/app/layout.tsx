@@ -4,8 +4,8 @@ import ErrorContext from "@/app/Errors/ErrorContext";
 import {Toaster} from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Rive PreviewSystemLegacy",
-  description: "Little PreviewSystemLegacy sandbox for rive",
+  title: "Rive Browser Previewer",
+  description: "Browser based rive file preview (based on Rive runtime). No files are uploaded (check your network tab!)",
 };
 
 export default function RootLayout({
