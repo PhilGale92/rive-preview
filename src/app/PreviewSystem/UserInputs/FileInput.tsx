@@ -38,6 +38,7 @@ export default function FileInput({
     return (
         <Input
             type={"file"}
+            accept=".riv"
             name={"file-tester"}
             onChange={(e) => {
                 if (e && e.target && e.target.files && e?.target?.files?.length > 0) {
