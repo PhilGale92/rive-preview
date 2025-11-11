@@ -58,7 +58,7 @@ export default function Introduction() {
             </Collapsible>
             <Collapsible className="pb-2">
                 <CollapsibleTrigger>
-                    <h2 className="cursor-pointer mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">Example usage</h2>
+                    <h2 className="cursor-pointer mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">Example scenarios</h2>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                     <h3>Example one: Bugged riv file.</h3>
@@ -67,7 +67,7 @@ export default function Introduction() {
                     <h3>Example two: Basic riv file</h3>
                     <p>Download the example 2 (Basic working riv file), and select it. It shows the Riv file interacting with your mouse position with 0 dev required.</p>
                     <h3>Example three: Dynamic riv file</h3>
-                    <p>Download the example 3 (Dynamic riv file), and select it. Then expand the &#34;Dynamic variables&#34; section.  Search for "Number 1", and change the value to any number between 0 and 100.</p>
+                    <p>Download the example 3 (Dynamic riv file), and select it. Then expand the &#34;Dynamic variables&#34; section.  Search for &quot;Number 1&quot;, and change the value to any number between 0 and 100.</p>
                     <p>In this example the number for Number1 could be hooked up to a scroll listener and as you scroll Riv events could fire off just as an example.</p>
 
                 </CollapsibleContent>
